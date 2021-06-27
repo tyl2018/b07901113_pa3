@@ -1,0 +1,32 @@
+This is README file for Algorithm PA#3
+Author: LIAO, TIEN-YA B07901113
+Date: June 28, 2021
+=====
+SYNOPSIS:
+
+./cb <input file name> <output file name>
+
+This program finds the minimum cost to break all cycles in a directed or undirected graph. (Actually just undirected for now, QQ)
+=====
+DIRECTORY:
+
+bin/	  executable binary
+doc/	  reports
+inputs/   input data
+outputs/  output result
+src/ 	  source C++ codes
+utilities/  checker
+======
+HOW TO COMPILE:
+
+	make
+======
+HOW TO RUN:
+	
+	./bin/cb <input_file_name> <output_file_name>
+	For example,
+	under b07901113_pa2/
+	./bin/cb inputs/public_case_1.in outputs/public_case_1.out
+======
+OTHER NOTICE:
+Fxck you Fibonacci heap.
