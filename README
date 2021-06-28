@@ -6,7 +6,7 @@ SYNOPSIS:
 
 ./cb <input file name> <output file name>
 
-This program finds the minimum cost to break all cycles in a directed or undirected graph. (Actually just undirected for now, QQ)
+This program finds the minimum cost to break all cycles in a directed or undirected graph.
 =====
 DIRECTORY:
 
