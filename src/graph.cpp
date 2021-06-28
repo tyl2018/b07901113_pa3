@@ -68,7 +68,7 @@ FibHeap::FibHeap() {
 }
 
 void FibHeap::insert(Vertex* v) {
-    cout << "insert " << v->name << endl;
+    //cout << "insert " << v->name << endl;
     v->parent = NULL;
     v->child = NULL;
     v->left = v;
@@ -109,8 +109,8 @@ Vertex* FibHeap::extractMin() {
     Vertex* x = Min; // ready to dump
     size--;
     // Set new Min
-    updateMin(NULL, x->name==22);
-    consolidate(x->name==8);
+    updateMin(NULL, true); //22
+    consolidate(true); //8
     //consolidate(false);
     // Delete the min node
     x->left = x;
