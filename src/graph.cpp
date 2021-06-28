@@ -102,7 +102,7 @@ Vertex* FibHeap::extractMin(bool dbg) {
         // Add subtrees in the root list
         uni(Min->left,Min->child);
         if(dbg){
-            cout << "Min: " << Min << endl;
+            cout << "Min: " << Min->name << endl;
             prtSubtrees(Min);
         }
     }
