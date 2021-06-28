@@ -165,12 +165,15 @@ long long int cycleBreaking_u(Graph& G) {
 
 long long int cycleBreaking_d(Graph& G) {
     // reset
-    vector<bool> starting(G.nV, true); // The index of the valid starting vertices of dfs
+    //vector<bool> starting(G.nV, true); // The index of the valid starting vertices of dfs
+    vector<int> ref(G.nV, 0); // The number of incoming edges
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
             e->select = true;
-            starting[e->to] = false;
+            //starting[e->to] = false;
+            ref[e->to] += 1;
+            V[e->from].key += e->w;
             e = e->next;
         }
     }
@@ -208,13 +211,10 @@ long long int cycleBreaking_d(Graph& G) {
             e = e->next;
         }
     }
-    // find a vertex with no incoming edges and do dfs
+    // find a vertex with no incoming edges and do topological sort
     Vertex* start;
     for(int i=0; i<G.nV; i++) {
-        if(starting[i]) {
-            start = &G.V[i];
-            cout << start->name << endl;
-        }
+        cout << V[i].name << ' ' << ref[i] << ' ' << V[i].name << endl;
     }
     
     // if the rest of the edges didn't break the dag then add it back

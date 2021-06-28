@@ -44,9 +44,6 @@ typedef struct Edge {
     bool    select; // be in the output or not
 } Edge;
 
-Vertex newVertex(int);
-Edge newEdge(Vertex*, Vertex*, int);
-
 class Graph {
 public:
             Graph(char, int, int);
