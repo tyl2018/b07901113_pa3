@@ -94,6 +94,9 @@ Vertex* FibHeap::extractMin(bool dbg) {
     if(i != NULL) { // has some children to move
         // cut down all the children
         while(i->parent != NULL) {
+            cout << "cutting " << i->name << endl;
+            char buffer;
+            cin >> buffer;
             i->parent = NULL;
             i->marked = false;
             //cout << i->name << " false a" << endl;
