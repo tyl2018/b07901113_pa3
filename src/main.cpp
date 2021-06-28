@@ -235,7 +235,7 @@ long long int cycleBreaking_d(Graph& G) {
         
         Edge* e = G.adj[s->name]; cout << "b4" << endl;
         while(e != NULL) {
-            cout << e->from << ' ' << e->to << ' ' << e->select << ' ' << (e==e->next);
+            cout << e->from << ' ' << e->to << ' ' << e->select << ' ' << (e==e->next) << endl;
             if(!e->select) {
                 ref[e->to] -= 1;
             }
