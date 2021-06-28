@@ -68,9 +68,9 @@ public:
     int     maxDegree;
     bool    ni(Vertex*, Vertex*);
 protected:
-    void    updateMin(Vertex* = NULL);
+    void    updateMin(Vertex* = NULL, bool = false);
     void    link(Vertex*, Vertex*);
-    void    consolidate(bool);
+    void    consolidate(bool = false);
     void    cut(Vertex*);
 };
 

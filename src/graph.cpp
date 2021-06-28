@@ -110,7 +110,7 @@ Vertex* FibHeap::extractMin() {
     size--;
     // Set new Min
     updateMin(NULL);
-    consolidate(x->name==86);
+    consolidate(x->name==22);
     //consolidate(false);
     // Delete the min node
     x->left = x;
@@ -245,13 +245,13 @@ void FibHeap::link(Vertex* y, Vertex* x) {
 }
 
 void FibHeap::consolidate(bool dbg) {
-    
+    /*
     if(dbg) {
         cout << "consolidate" << endl;
         cout << "before:" << endl;
         prtSubtrees(Min);
     }
-     
+     */
     if(Min==NULL) {
         return;
     }
@@ -280,7 +280,7 @@ void FibHeap::consolidate(bool dbg) {
         D[r->degree] = r;
         
         i = i_next;
-        
+        /*
         if(dbg) {
             cout << "step" << endl;
             for(int it=0; it<D.size(); it++) {
@@ -289,7 +289,7 @@ void FibHeap::consolidate(bool dbg) {
             }
             cout << endl;
             prtSubtrees(Min);
-        }
+        }*/
     } while(i != Min);
     if(dbg) {
         cout << "after:" << endl;
