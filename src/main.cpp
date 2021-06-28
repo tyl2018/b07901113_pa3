@@ -179,9 +179,10 @@ long long int cycleBreaking_d(Graph& G) {
         cout << i << endl;
         Edge* e = G_r.adj[i];
         if(e==NULL) {
-            e = e->next;
+            cout << "NULL" << endl;
             continue;
         }
+        cout << e->name << endl;
         if(!e->prt || !e->select) { // delete e
             cout << 'b' << endl;
             G_r.adj[i] = e->next;
