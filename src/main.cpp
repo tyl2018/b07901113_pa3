@@ -180,6 +180,10 @@ long long int cycleBreaking_d(Graph& G) {
     
     // transform to undigraph G_u
     Graph G_u('u', G.nV, G.nE);
+    for(int i=0; i<G_u.nV; i++) {
+        Q.insert(&G_u.V[i]);
+        cout << (&G_u.V[i])->key << endl;
+    }
     G.DtoU(G_u);
     
     // do cb on G_u and copy the solution
