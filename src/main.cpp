@@ -174,13 +174,8 @@ long long int cycleBreaking_d(Graph& G) {
     T = cycleBreaking_u(G_r);
     G_r.type = 'd'; // change G_r into the reduced directed graph
     for(int i=0; i<G_r.nV; i++) {
-        cout << i << endl;
         Edge* e = G_r.adj[i];
         while(e!=NULL && !e->prt) { // delete e
-            cout << "Deleting " << e->from << ' ' << e->to << endl;
-            cout << G_r.adj[i] << endl;
-            cout << e->next << endl;
-            cout << (e->next==NULL) << endl;
             G_r.adj[i] = e->next;
             e = e->next;
         }
@@ -188,7 +183,6 @@ long long int cycleBreaking_d(Graph& G) {
         while(e->next != NULL) {
             Edge* f = e->next;
             if(!f->prt) { // delete f
-                cout << "Deleting " << f->from << ' ' << f->to << endl;
                 e->next = f->next;
             } else {
                 e = e->next;
@@ -215,7 +209,7 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G.nV; i++) {
         cout << i << ' ' <<  ref[i] << ' ' << G.V[i].key << endl;
     }
-    /*
+    
     // find a vertex with no incoming edges and do topological sort
     //cout << "topo order" << endl;
     FibHeap Q;
@@ -255,6 +249,6 @@ long long int cycleBreaking_d(Graph& G) {
         cout << G.V[i].topo_order << endl;
     }
     // if the rest of the edges didn't break the sort then add it back
-     */
+     
     return T;
 }
