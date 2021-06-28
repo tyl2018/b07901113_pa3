@@ -68,7 +68,7 @@ FibHeap::FibHeap() {
 }
 
 void FibHeap::insert(Vertex* v) {
-    //cout << "insert " << v->name << endl;
+    cout << "insert " << v->name << endl;
     v->parent = NULL;
     v->child = NULL;
     v->left = v;
