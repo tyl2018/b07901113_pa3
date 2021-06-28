@@ -102,35 +102,32 @@ int main(int argc, char* argv[]) {
 }
 
 long long int cycleBreaking_u(Graph& G) {
-    //cout << "cb:" << endl;
+    cout << "cb:" << endl;
     G.V[0].key = 0;
     FibHeap Q;
     //vector<Vertex*> Q_vec(G.nV);
-    //cout << "insert" << endl;
+    cout << "insert" << endl;
     for(int i=0; i<G.nV; i++) {
         Q.insert(&G.V[i]);
     }
-    //cout << "-mps" << endl;
+    cout << "-mps" << endl;
     while(Q.Min) {
         Vertex* u = Q.extractMin();
         Edge* e = G.adj[u->name];
         while(e) {
-            //cout << e->from << ' ' << e->to << ' ' << e->w << endl;
+            cout << e->from << ' ' << e->to << ' ' << e->w << endl;
             Vertex* v = &G.V[e->to];
-            //cout << v->name << ' ' << v->key << endl;
+            cout << v->name << ' ' << v->key << endl;
             if(Q.ni(v, Q.Min) && -(e->w) < v->key) {
                 v->pi = &G.V[e->from];
                 Q.decreaseKey(v, -e->w);
-            }            //Vertex* i=Q.Min;
-            //do {
-            //    prtSubtree(i, 0);
-            //    i = i->right;
-            //} while(i!=Q.Min);
+            }
+            prtSubtrees(Q.Min);
             e = e->next;
         }
     }
     // reset: select=true
-    //cout << "reset" << endl;
+    cout << "reset" << endl;
     long long int T = 0;
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
@@ -143,7 +140,7 @@ long long int cycleBreaking_u(Graph& G) {
         }
     }
     // find the unused edges
-    //cout << "pick out" << endl;
+    cout << "pick out" << endl;
     for(int i=1; i<G.nV; i++) { // 0 is the starting point with no information
         int j = G.V[i].pi->name;
         Edge* e = G.adj[j];
@@ -166,7 +163,6 @@ long long int cycleBreaking_u(Graph& G) {
 long long int cycleBreaking_d(Graph& G) {
     // reset
     //vector<bool> starting(G.nV, true); // The index of the valid starting vertices of dfs
-    cout << "a" << endl;
     vector<int> ref(G.nV, 0); // The number of incoming edges
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
@@ -181,12 +177,10 @@ long long int cycleBreaking_d(Graph& G) {
     }
     
     // transform to undigraph G_u
-    cout << "b" << endl;
     Graph G_u('u', G.nV, G.nE);
     G.DtoU(G_u);
     
     // do cb on G_u and copy the solution
-    cout << "c" << endl;
     long long int T=0;
     T = cycleBreaking_u(G_u);
     
