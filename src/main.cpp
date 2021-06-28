@@ -190,6 +190,7 @@ long long int cycleBreaking_d(Graph& G) {
             f = f->next;
         }
     }
+    
     /*
     // reset
     vector<int> ref(G.nV, 0); // The number of incoming edges
@@ -260,5 +261,7 @@ long long int cycleBreaking_d(Graph& G) {
         cout << G.V[i].topo_order << endl;
     }
     // if the rest of the edges didn't break the sort then add it back
-    return T;*/
+     */
+    G.adj = G_r.adj;
+    return T;
 }
