@@ -212,7 +212,7 @@ long long int cycleBreaking_d(Graph& G) {
     Vertex* start;
     for(int i=0; i<G.nV; i++) {
         if(starting[i]) {
-            start = &V[i];
+            start = &G.V[i];
             cout << start->name << endl;
         }
     }
