@@ -314,7 +314,7 @@ void prtSubtree(Vertex* v, int depth) {
 void prtSubtrees(Vertex* mini) {
     if(mini==NULL) {
         cout << "empty heap" << endl;
-        return
+        return;
     }
     Vertex* i = mini;
     do {
