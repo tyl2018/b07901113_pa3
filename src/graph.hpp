@@ -16,7 +16,7 @@ using namespace std;
 typedef struct Vertex {
     int     name;
     long long int     key;  // in undigraph means the weight of the edge from pi
-                            // in digraph means the weight of the longest edge going out
+                            // in digraph means the total weight of the edges going out
     Vertex* pi;
     
     // for directed graphs

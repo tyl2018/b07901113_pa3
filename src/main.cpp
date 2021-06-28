@@ -169,73 +169,47 @@ long long int cycleBreaking_d(Graph& G) {
     
     // Graph G_r('d', G.nV, G.nE); // reduced digraph by cycleBreaking_u
     
-    // do cb on G_r
+    // do cb on G_r and copy the answer
     long long int T=0;
     T = cycleBreaking_u(G_r);
-    // change G_r into the reduced directed graph
-    G_r.type = 'd';
+    G_r.type = 'd'; // change G_r into the reduced directed graph
     for(int i=0; i<G_r.nV; i++) {
-        cout << i << endl;
         Edge* e = G_r.adj[i];
-        if(e==NULL) {
-            cout << "NULL" << endl;
-            continue;
-        }
+        if(e==NULL) {continue;}
         cout << e->from << ' ' << e->to << endl;
         if(!e->prt) { // delete e
-            cout << 'b' << endl;
             G_r.adj[i] = e->next;
             e = e->next;
         }
-        if(e==NULL) {
-            cout << "NULL" << endl;
-            continue;
-        }
-        cout << 'd' << endl;
+        if(e==NULL) {continue;}
         while(e->next != NULL) {
-            cout << 'c' << endl;
-            cout << e->from << ' ' << e->to << endl;
             Edge* f = e->next;
             if(!f->prt) { // delete f
-                cout << "c1" << endl;
                 e->next = f->next;
             } else {
                 e = e->next;
             }
         }
     }
+    G.adj = move(G_r.adj); // no need to use G_r anymore
     
-    /*
-    // reset
+    // prepare for topological sort
     vector<int> ref(G.nV, 0); // The number of incoming edges
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         G.V[i].key = 0;
         while(e != NULL) {
-            ref[e->to] += 1;
-            G.V[e->from].key -= e->w;
-            e = e->next;
+            if(!e->select) { // only the remaining edges counts
+                ref[e->to] += 1;
+                G.V[e->from].key -= e->w;
+                e = e->next;
+            }
         }
     }
     for(int i=0; i<G.nV; i++) {
         cout << i << ' ' <<  ref[i] << ' ' << G.V[i].key << endl;
     }
-    
-    for(int i=0; i<G.nV; i++) {
-        Edge* e = G.adj[i];
-        while(e != NULL) {
-            // find corresponding edge in G_u
-            Edge* e_u = G_u.adj[i];
-            while(e_u != NULL) {
-                if(e->to == e_u->to) {
-                    e->select = e_u->select;
-                    break;
-                }
-                e_u = e_u->next;
-            }
-            e = e->next;
-        }
-    }
+    /*
     // find a vertex with no incoming edges and do topological sort
     //cout << "topo order" << endl;
     FibHeap Q;
@@ -276,6 +250,5 @@ long long int cycleBreaking_d(Graph& G) {
     }
     // if the rest of the edges didn't break the sort then add it back
      */
-    G.adj = G_r.adj;
     return T;
 }
