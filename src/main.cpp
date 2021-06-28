@@ -182,7 +182,9 @@ long long int cycleBreaking_d(Graph& G) {
             G_r.adj[i] = e->next;
             e = e->next;
         }
-        if(e==NULL) {continue;}
+        if(e==NULL) {
+            cout << 'c' << endl;
+            continue;}
         cout << 'b' << endl;
         while(e->next != NULL) {
             Edge* f = e->next;
