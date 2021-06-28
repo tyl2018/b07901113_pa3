@@ -121,6 +121,7 @@ long long int cycleBreaking_u(Graph& G) {
             Vertex* v = &G.V[e->to];
             cout << v->name << ' ' << v->key << endl;
             if(Q.ni(v, Q.Min) && -(e->w) < v->key) {
+                cout << "update" << endl;
                 v->pi = &G.V[e->from];
                 Q.decreaseKey(v, -e->w);
             }
