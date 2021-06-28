@@ -102,36 +102,35 @@ int main(int argc, char* argv[]) {
 }
 
 long long int cycleBreaking_u(Graph& G) {
-    cout << "cb:" << endl;
+    //cout << "cb:" << endl;
     G.V[0].key = 0;
     FibHeap Q;
     //vector<Vertex*> Q_vec(G.nV);
-    cout << "insert" << endl;
+    //cout << "insert" << endl;
     for(int i=0; i<G.nV; i++) {
         Q.insert(&G.V[i]);
     }
-    cout << "-mps" << endl;
+    //cout << "-mps" << endl;
     while(Q.Min != NULL) {
-        cout << "loop" << endl;
+        //cout << "loop" << endl;
         Vertex* u = Q.extractMin();
-        cout << u->name << endl;
+        //cout << u->name << endl;
         Edge* e = G.adj[u->name];
         while(e) {
-            cout << e->from << ' ' << e->to << ' ' << e->w << endl;
+            //cout << e->from << ' ' << e->to << ' ' << e->w << endl;
             Vertex* v = &G.V[e->to];
-            cout << v->name << ' ' << v->key << endl;
+            //cout << v->name << ' ' << v->key << endl;
             if(Q.ni(v, Q.Min) && -(e->w) < v->key) {
-                cout << "update" << endl;
+                //cout << "update" << endl;
                 v->pi = &G.V[e->from];
                 Q.decreaseKey(v, -e->w);
             }
             prtSubtrees(Q.Min);
-            cout << e << endl;
             e = e->next;
         }
     }
     // reset: select=true
-    cout << "reset" << endl;
+    //cout << "reset" << endl;
     long long int T = 0;
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
@@ -144,7 +143,7 @@ long long int cycleBreaking_u(Graph& G) {
         }
     }
     // find the unused edges
-    cout << "pick out" << endl;
+    //cout << "pick out" << endl;
     for(int i=1; i<G.nV; i++) { // 0 is the starting point with no information
         int j = G.V[i].pi->name;
         Edge* e = G.adj[j];
@@ -197,7 +196,6 @@ long long int cycleBreaking_d(Graph& G) {
         }
     }
     
-    cout << "d" << endl;
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
@@ -214,7 +212,7 @@ long long int cycleBreaking_d(Graph& G) {
         }
     }
     // find a vertex with no incoming edges and do topological sort
-    cout << "topo order" << endl;
+    //cout << "topo order" << endl;
     FibHeap Q;
     cout << "init" << endl;
     for(int i=0; i<G.nV; i++) {
@@ -233,7 +231,7 @@ long long int cycleBreaking_d(Graph& G) {
         cout << "set order" << endl;
         ref[s->name] = -1; // mark as sorted
         s->topo_order = i;
-        cout << i << G.V[i].name << ' ' << endl;
+        cout << i << ' ' << s->name << endl;
         
         cout << "update" << endl;
         Edge* e = G.adj[i];
