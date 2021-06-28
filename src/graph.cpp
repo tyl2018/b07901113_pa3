@@ -290,8 +290,10 @@ void FibHeap::consolidate(bool dbg) {
             Vertex* x = D[r->degree];
             D[r->degree] = NULL;
             // link
-            //cout << r->name << ' ' << x->name << ' ' << Min->name << endl;
-            //cout << r->key << ' ' << x->key << endl;
+            if(dbg) {
+                cout << r->name << ' ' << x->name << ' ' << Min->name << endl;
+                cout << r->key << ' ' << x->key << endl;
+            }
             if(r->key < x->key || Min==r) {
                 link(x, r);
             } else {
@@ -308,8 +310,8 @@ void FibHeap::consolidate(bool dbg) {
         
         if(dbg) {
             cout << "step" << endl;
-            if(Min->left){cout << "Min->left: " << Min->left->name << endl;}
-            if(Min->right){cout << "Min->right: " << Min->right->name << endl;}
+            cout << "Min->left: " << Min->left->name << endl;
+            cout << "Min->right: " << Min->right->name << endl;
             for(int it=0; it<D.size(); it++) {
                 if(D.at(it) != NULL)    cout << D.at(it)->name << ' ';
                 else    cout << '\\' << ' ';
