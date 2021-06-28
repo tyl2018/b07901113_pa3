@@ -304,16 +304,18 @@ void FibHeap::consolidate(bool dbg) {
         D[r->degree] = r;
         
         i = i_next;
-        /*
+        
         if(dbg) {
             cout << "step" << endl;
+            if(Min->left){cout << "Min->left: " << Min->left->name << endl;}
+            if(Min->right){cout << "Min->right: " << Min->right->name << endl;}
             for(int it=0; it<D.size(); it++) {
                 if(D.at(it) != NULL)    cout << D.at(it)->name << ' ';
                 else    cout << '\\' << ' ';
             }
             cout << endl;
             prtSubtrees(Min);
-        }*/
+        }
     } while(i != Min);
     if(dbg) {
         cout << "after:" << endl;
