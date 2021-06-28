@@ -94,17 +94,20 @@ Vertex* FibHeap::extractMin(bool dbg) {
     if(i != NULL) { // has some children to move
         // cut down all the children
         while(i->parent != NULL) {
-            if(dbg) {
-                cout << "cutting " << i->name << endl;
-                char buffer;
-                cin >> buffer;
-            }
+            
             i->parent = NULL;
             i->marked = false;
             //cout << i->name << " false a" << endl;
             i = i->right;
         }
         // Add subtrees in the root list
+        if(dbg) {
+            cout << "Min->left: " << Min->left->name << endl;
+            cout << "Min->child: " << Min->left->name << endl;
+            cout << "uni()" << endl;
+            char buffer;
+            cin >> buffer;
+        }
         uni(Min->left,Min->child);
         if(dbg){
             cout << "Min: " << Min->name << endl;
