@@ -166,6 +166,7 @@ long long int cycleBreaking_u(Graph& G) {
 long long int cycleBreaking_d(Graph& G) {
     // reset
     //vector<bool> starting(G.nV, true); // The index of the valid starting vertices of dfs
+    cout << "a" << endl;
     vector<int> ref(G.nV, 0); // The number of incoming edges
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
@@ -180,10 +181,12 @@ long long int cycleBreaking_d(Graph& G) {
     }
     
     // transform to undigraph G_u
+    cout << "b" << endl;
     Graph G_u('u', G.nV, G.nE);
     G.DtoU(G_u);
     
     // do cb on G_u and copy the solution
+    cout << "c" << endl;
     long long int T=0;
     T = cycleBreaking_u(G_u);
     
@@ -197,6 +200,7 @@ long long int cycleBreaking_d(Graph& G) {
         }
     }
     
+    cout << "d" << endl;
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
