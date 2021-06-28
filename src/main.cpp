@@ -184,6 +184,7 @@ long long int cycleBreaking_d(Graph& G) {
         while(e->next != NULL) {
             Edge* f = e->next;
             if(!f->prt) { // delete f
+                cout << "Deleting " << f->from << ' ' << f->to << endl;
                 e->next = f->next;
             } else {
                 e = e->next;
@@ -199,8 +200,8 @@ long long int cycleBreaking_d(Graph& G) {
         Edge* e = G.adj[i];
         G.V[i].key = 0;
         while(e != NULL) {
-            cout << e->from << ' ' << e->to << endl;
             if(!e->select) { // only the remaining edges counts
+                cout << e->from << ' ' << e->to << ' ' << e->prt << ' ' << e->select << endl;
                 ref[e->to] += 1;
                 G.V[e->from].key -= e->w;
             }
