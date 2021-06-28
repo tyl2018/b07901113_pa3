@@ -109,7 +109,7 @@ Vertex* FibHeap::extractMin() {
     Vertex* x = Min; // ready to dump
     size--;
     // Set new Min
-    updateMin(NULL, 22);
+    updateMin(NULL, x->name==22);
     consolidate(x->name==8);
     //consolidate(false);
     // Delete the min node
@@ -266,8 +266,8 @@ void FibHeap::consolidate(bool dbg) {
             Vertex* x = D[r->degree];
             D[r->degree] = NULL;
             // link
-            cout << r->name << ' ' << x->name << ' ' << Min->name << endl;
-            cout << r->key << ' ' << x->key << endl;
+            //cout << r->name << ' ' << x->name << ' ' << Min->name << endl;
+            //cout << r->key << ' ' << x->key << endl;
             if(r->key < x->key || Min==r) {
                 link(x, r);
             } else {
