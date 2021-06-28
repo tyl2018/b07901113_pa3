@@ -245,6 +245,7 @@ long long int cycleBreaking_d(Graph& G) {
         while(e != NULL) {
             if(e->select && G.V[e->from].topo_order < G.V[e->to].topo_order) {
                 e->select = false;
+                T -= e->w;
             }
             e = e->next;
         }
