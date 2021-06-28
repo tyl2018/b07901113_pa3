@@ -241,12 +241,13 @@ long long int cycleBreaking_d(Graph& G) {
             cout << e->from << ' ' << e->to << ' ' << e->prt << ' ' << e->select << endl;
             if(!e->select) {
                 ref[e->to] -= 1;
+                if(ref[e->to]==0) {
+                    Q.insert(&G.V[e->to]);
+                    char bugfer;
+                    cin >> bugfer;
+                }
             }
-            if(ref[e->to]==0) {
-                Q.insert(&G.V[e->to]);
-                char bugfer;
-                cin >> bugfer;
-            }
+            
             e = e->next;
         }
     }
