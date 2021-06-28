@@ -164,6 +164,17 @@ long long int cycleBreaking_u(Graph& G) {
 }
 
 long long int cycleBreaking_d(Graph& G) {
+    // reset
+    vector<bool> starting(G.nV, true); // The index of the valid starting vertices of dfs
+    for(int i=0; i<G.nV; i++) {
+        Edge* e = G.adj[i];
+        while(e != NULL) {
+            e->select = true;
+            starting[e->to] = false;
+            e = e->next;
+        }
+    }
+    
     // transform to undigraph G_u
     Graph G_u('u', G.nV, G.nE);
     G.DtoU(G_u);
@@ -185,13 +196,6 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
-            e->select = true;
-            e = e->next;
-        }
-    }
-    for(int i=0; i<G.nV; i++) {
-        Edge* e = G.adj[i];
-        while(e != NULL) {
             // find corresponding edge in G_u
             Edge* e_u = G_u.adj[i];
             while(e_u != NULL) {
@@ -205,7 +209,14 @@ long long int cycleBreaking_d(Graph& G) {
         }
     }
     // find a vertex with no incoming edges and do dfs
+    Vertex* start;
+    for(int i=0; i<G.nV, i++) {
+        if(starting[i]) {
+            start = &V[i];
+            cout << start->name << endl;
+        }
+    }
     
     // if the rest of the edges didn't break the dag then add it back
-    return 0;
+    return T;
 }
