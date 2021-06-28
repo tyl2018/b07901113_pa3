@@ -210,7 +210,7 @@ long long int cycleBreaking_d(Graph& G) {
     }
     // find a vertex with no incoming edges and do dfs
     Vertex* start;
-    for(int i=0; i<G.nV, i++) {
+    for(int i=0; i<G.nV; i++) {
         if(starting[i]) {
             start = &V[i];
             cout << start->name << endl;
