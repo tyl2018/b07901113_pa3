@@ -173,7 +173,7 @@ long long int cycleBreaking_d(Graph& G) {
             e->select = true;
             //starting[e->to] = false;
             ref[e->to] += 1;
-            V[e->from].key += e->w;
+            G.V[e->from].key += e->w;
             e = e->next;
         }
     }
@@ -214,7 +214,7 @@ long long int cycleBreaking_d(Graph& G) {
     // find a vertex with no incoming edges and do topological sort
     Vertex* start;
     for(int i=0; i<G.nV; i++) {
-        cout << V[i].name << ' ' << ref[i] << ' ' << V[i].name << endl;
+        cout << G.V[i].name << ' ' << ref[i] << ' ' << G.V[i].name << endl;
     }
     
     // if the rest of the edges didn't break the dag then add it back
