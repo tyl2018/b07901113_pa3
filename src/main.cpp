@@ -167,9 +167,21 @@ long long int cycleBreaking_d(Graph& G) {
     // transform to undigraph G_u
     Graph G_u('u', G.nV, G.nE);
     G.DtoU(G_u);
+    
     // do cb on G_u and copy the solution
     long long int T=0;
     T = cycleBreaking_u(G_u);
+    
+    for(int i=0; i<G_u.nV; i++) {
+        Edge* e = G_u.adj[i];
+        while(e != NULL) {
+            if(!e->prt) {
+                e->select = e->pair->select;
+            }
+            e = e->next;
+        }
+    }
+    
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
@@ -177,7 +189,7 @@ long long int cycleBreaking_d(Graph& G) {
             e = e->next;
         }
     }
-    for(int i=1; i<G.nV; i++) { // 0 is the starting point with no information
+    for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
             // find corresponding edge in G_u
