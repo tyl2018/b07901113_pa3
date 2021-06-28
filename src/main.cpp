@@ -125,7 +125,7 @@ long long int cycleBreaking_u(Graph& G) {
                 v->pi = &G.V[e->from];
                 Q.decreaseKey(v, -e->w);
             }
-            prtSubtrees(Q.Min);
+            //prtSubtrees(Q.Min);
             e = e->next;
         }
     }
@@ -194,6 +194,9 @@ long long int cycleBreaking_d(Graph& G) {
             G.V[e->from].key -= e->w;
             e = e->next;
         }
+    }
+    for(int i=0; i<G.nV; i++) {
+        cout << i << ' ' <<  ref[i] << ' ' << G.V[i].key << endl;
     }
     
     for(int i=0; i<G.nV; i++) {
