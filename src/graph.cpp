@@ -119,10 +119,10 @@ Vertex* FibHeap::extractMin() {
 }
 
 void FibHeap::decreaseKey(Vertex* v, int newkey) {
-    cout << "decreaseKey" << endl;
+    //cout << "decreaseKey" << endl;
     v->key = newkey;
     if(v->parent == NULL) { // v in the root list. Just update Min
-        cout << "in root list" << endl;
+        //cout << "in root list" << endl;
         updateMin(v);
     } else if(v->key < v->parent->key) { // v is not in the root list min tree not violated
         while(true) {
@@ -137,7 +137,7 @@ void FibHeap::decreaseKey(Vertex* v, int newkey) {
             p->degree -= 1;
             v->parent = NULL;
             v->marked = false;
-            cout << v->name << " false b" << endl;
+            //cout << v->name << " false b" << endl;
             v->left->right = v->right;
             v->right->left = v->left;
             v->left = v;
@@ -147,7 +147,7 @@ void FibHeap::decreaseKey(Vertex* v, int newkey) {
             updateMin(v); // update Min
             if(!(p->marked)) {
                 p->marked = true;
-                cout << p->name << " true c" << endl;
+                //cout << p->name << " true c" << endl;
                 break;
             } else {
                 v = p;
@@ -155,7 +155,7 @@ void FibHeap::decreaseKey(Vertex* v, int newkey) {
         }
     }
     
-    prtSubtrees(Min);
+    //prtSubtrees(Min);
 }
 
 void FibHeap::uni(Vertex* x, Vertex* y) {
@@ -312,6 +312,10 @@ void prtSubtree(Vertex* v, int depth) {
 }
 
 void prtSubtrees(Vertex* mini) {
+    if(mini==NULL) {
+        cout << "empty heap" << endl;
+        return
+    }
     Vertex* i = mini;
     do {
         cout << i->degree << ' ';
