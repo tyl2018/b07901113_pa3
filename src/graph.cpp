@@ -90,6 +90,13 @@ Vertex* FibHeap::extractMin(bool dbg) {
         cout << "This heap is empty." << endl;
         return NULL;
     }
+    if(dbg) {
+        cout << "Min->left: " << Min->left->name << endl;
+        cout << "Min->right: " << Min->right->name << endl;
+        cout << "Min->child: " << Min->child->name << endl;
+        char buffer;
+        cin >> buffer;
+    }
     Vertex* i = Min->child;
     if(i != NULL) { // has some children to move
         // cut down all the children
@@ -262,13 +269,13 @@ void FibHeap::link(Vertex* y, Vertex* x) {
 }
 
 void FibHeap::consolidate(bool dbg) {
-    /*
+    
     if(dbg) {
         cout << "consolidate" << endl;
         cout << "before:" << endl;
         prtSubtrees(Min);
     }
-     */
+     
     if(Min==NULL) {
         return;
     }
