@@ -167,20 +167,32 @@ long long int cycleBreaking_d(Graph& G) {
     // transform to undigraph G_u
     Graph G_u('u', G.nV, G.nE);
     G.DtoU(G_u);
-    
-    cout << "(test: DtoU)" << endl;
-    for(int i=0; i<G_u.nV; i++) {
-        Edge* p = G_u.adj[i];
-        while(p != NULL) {
-            if(p->prt) { // if(p->prt)
-                cout << p->from << ' ' << p->to << ' ' << p->w << endl;
-            }
-            p = p->next;
+    // do cb on G_u and copy the solution
+    long long int T=0;
+    T = cycleBreaking_u(G_u);
+    for(int i=0; i<G.nV; i++) {
+        Edge* e = G.adj[i];
+        while(e != NULL) {
+            e->select = true;
+            e = e->next;
         }
     }
-    // cycleBreaking_d(G_u) and copy the edges
-    
+    for(int i=1; i<G.nV; i++) { // 0 is the starting point with no information
+        Edge* e = G.adj[i];
+        while(e != NULL) {
+            // find corresponding edge in G_u
+            Edge* e_u = G_u.adj[i];
+            while(e_u != NULL) {
+                if(e->to == e_u->to) {
+                    e->select = e_u->select;
+                    break;
+                }
+            }
+            e = e->next;
+        }
+    }
     // find a vertex with no incoming edges and do dfs
+    
     // if the rest of the edges didn't break the dag then add it back
     return 0;
 }
