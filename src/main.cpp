@@ -187,6 +187,7 @@ long long int cycleBreaking_d(Graph& G) {
                     e->select = e_u->select;
                     break;
                 }
+                e_u = e_u->next;
             }
             e = e->next;
         }
