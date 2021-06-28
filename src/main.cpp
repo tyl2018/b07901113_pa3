@@ -125,6 +125,7 @@ long long int cycleBreaking_u(Graph& G) {
                 Q.decreaseKey(v, -e->w);
             }
             prtSubtrees(Q.Min);
+            cout << e << endl;
             e = e->next;
         }
     }
