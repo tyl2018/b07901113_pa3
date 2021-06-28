@@ -222,7 +222,7 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G.nV; i++) {
         cout << "b1" << endl;
         cout << Q.Min->name << endl;
-        Vertex* s = Q.extractMin();
+        Vertex* s = Q.extractMin(true);
         cout << "b2" << endl;
         if(s==NULL) {
             cout << "error" << endl;

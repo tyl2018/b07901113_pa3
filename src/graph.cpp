@@ -85,7 +85,7 @@ void FibHeap::insert(Vertex* v) {
     }
 }
 
-Vertex* FibHeap::extractMin() {
+Vertex* FibHeap::extractMin(bool dbg) {
     if(Min==NULL) {
         cout << "This heap is empty." << endl;
         return NULL;
@@ -109,8 +109,8 @@ Vertex* FibHeap::extractMin() {
     Vertex* x = Min; // ready to dump
     size--;
     // Set new Min
-    updateMin(NULL, true); //22
-    consolidate(true); //8
+    updateMin(NULL, dbg); //22
+    consolidate(dbg); //8
     //consolidate(false);
     // Delete the min node
     x->left = x;

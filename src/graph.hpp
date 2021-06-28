@@ -60,7 +60,7 @@ class FibHeap {
 public:
             FibHeap();
     void    insert(Vertex*);
-    Vertex* extractMin();
+    Vertex* extractMin(bool = false);
     void    decreaseKey(Vertex*, int);
     Vertex* Min;
     void    uni(Vertex*, Vertex*);
