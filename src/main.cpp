@@ -169,6 +169,7 @@ long long int cycleBreaking_d(Graph& G) {
     vector<int> ref(G.nV, 0); // The number of incoming edges
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
+        G.V[i].key = 0;
         while(e != NULL) {
             e->select = true;
             //starting[e->to] = false;
