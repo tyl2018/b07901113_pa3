@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     }
     
     // for testing
-    
+    /*
     cout << "(test: copy)" << endl;
     for(int i=0; i<n; i++) {
         Edge* p = G.adj[i];
@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
         }
     }
     cout << endl;
-    
+    */
     //////////// cycle breaking //////////////////
     long long int ttl;
     if(G.type == 'u') {
@@ -173,7 +173,6 @@ long long int cycleBreaking_d(Graph& G) {
     long long int T=0;
     T = cycleBreaking_u(G_r);
     // change G_r into the reduced directed graph
-    cout << 'a' << endl;
     G_r.type = 'd';
     for(int i=0; i<G_r.nV; i++) {
         cout << i << endl;
@@ -182,7 +181,7 @@ long long int cycleBreaking_d(Graph& G) {
             cout << "NULL" << endl;
             continue;
         }
-        cout << e->name << endl;
+        cout << e->from << ' ' << e->to << endl;
         if(!e->prt || !e->select) { // delete e
             cout << 'b' << endl;
             G_r.adj[i] = e->next;
