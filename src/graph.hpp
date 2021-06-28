@@ -70,7 +70,7 @@ public:
 protected:
     void    updateMin(Vertex* = NULL);
     void    link(Vertex*, Vertex*);
-    void    consolidate();
+    void    consolidate(bool);
     void    cut(Vertex*);
 };
 
