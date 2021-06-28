@@ -222,15 +222,18 @@ long long int cycleBreaking_d(Graph& G) {
     }
     cout << 'b' << endl;
     for(int i=0; i<G.nV; i++) {
+        cout << "b1" << endl;
         Vertex* s = Q.extractMin();
+        cout << "b2" << endl;
         if(s==NULL) {
             cout << "error" << endl;
             return 0;
         }
+        cout << "b3" << endl;
         ref[s->name] = -1; // mark as sorted
         s->topo_order = i;
         
-        Edge* e = G.adj[s->name];
+        Edge* e = G.adj[s->name]; cout << "b4" << endl;
         while(e != NULL) {
             cout << e->from << ' ' << e->to << ' ' << e->select << ' ' << (e==e->next);
             if(!e->select) {
