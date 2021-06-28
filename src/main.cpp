@@ -165,7 +165,7 @@ long long int cycleBreaking_u(Graph& G) {
 
 long long int cycleBreaking_d(Graph& G) {
     Graph G_r('u', G.nV, G.nE); // undigraph transformed from G
-    G.DtoU(G_r, E);
+    G.DtoU(G_r);
     
     // Graph G_r('d', G.nV, G.nE); // reduced digraph by cycleBreaking_u
     
