@@ -213,23 +213,28 @@ long long int cycleBreaking_d(Graph& G) {
         }
     }
     // find a vertex with no incoming edges and do topological sort
+    cout << "topo order" << endl;
     FibHeap Q;
+    cout << "init" << endl;
     for(int i=0; i<G.nV; i++) {
-        //cout << G.V[i].name << ' ' << ref[i] << ' ' << G.V[i].key << endl;
         if(ref[i]==0) {
             Q.insert(&G.V[i]);
         }
     }
+    cout << "for" << endl;
     for(int i=0; i<G.nV; i++) {
+        cout << "popMin" << endl;
         Vertex* s = Q.extractMin();
         if(s==NULL) {
             cout << "error" << endl;
             return 0;
         }
+        cout << "set order" << endl;
         ref[s->name] = -1; // mark as sorted
         s->topo_order = i;
         cout << i << G.V[i].name << ' ' << endl;
         
+        cout << "update" << endl;
         Edge* e = G.adj[i];
         while(e != NULL) {
             ref[e->to] -= 1;
