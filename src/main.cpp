@@ -192,7 +192,7 @@ long long int cycleBreaking_d(Graph& G) {
         while(f != NULL) {
             cout << 'c' << endl;
             if(!f->prt) { // delete f
-                cout << 'c1' << endl;
+                cout << "c1" << endl;
                 e->next = f->next;
                 f = f->next;
             }
