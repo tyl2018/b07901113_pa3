@@ -163,21 +163,6 @@ long long int cycleBreaking_u(Graph& G) {
 }
 
 long long int cycleBreaking_d(Graph& G) {
-    // reset
-    //vector<bool> starting(G.nV, true); // The index of the valid starting vertices of dfs
-    vector<int> ref(G.nV, 0); // The number of incoming edges
-    for(int i=0; i<G.nV; i++) {
-        Edge* e = G.adj[i];
-        G.V[i].key = 0;
-        while(e != NULL) {
-            e->select = true;
-            //starting[e->to] = false;
-            ref[e->to] += 1;
-            G.V[e->from].key -= e->w;
-            e = e->next;
-        }
-    }
-    
     // transform to undigraph G_u
     Graph G_u('u', G.nV, G.nE);
     for(int i=0; i<G_u.nV; i++) {
@@ -195,6 +180,20 @@ long long int cycleBreaking_d(Graph& G) {
             if(!e->prt) {
                 e->select = e->pair->select;
             }
+            e = e->next;
+        }
+    }
+    
+    // topo reset
+    vector<int> ref(G.nV, 0); // The number of incoming edges
+    for(int i=0; i<G.nV; i++) {
+        Edge* e = G.adj[i];
+        G.V[i].key = 0;
+        while(e != NULL) {
+            e->select = true;
+            //starting[e->to] = false;
+            ref[e->to] += 1;
+            G.V[e->from].key -= e->w;
             e = e->next;
         }
     }
