@@ -20,9 +20,7 @@ typedef struct Vertex {
     Vertex* pi;
     
     // for directed graphs
-    int     d;
-    int     f;
-    int     color;
+    int     topo_order;
     
     // for heap
     Vertex* parent;
