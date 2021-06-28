@@ -244,13 +244,10 @@ void FibHeap::link(Vertex* y, Vertex* x) {
 }
 
 void FibHeap::consolidate() {
-    /*
-    if(dbg) {
-        cout << "consolidate" << endl;
-        cout << "before:" << endl;
-        prtSubtrees(Min);
-    }
-     */
+    cout << "consolidate" << endl;
+    cout << "before:" << endl;
+    prtSubtrees(Min);
+    
     if(Min==NULL) {
         return;
     }
@@ -287,12 +284,11 @@ void FibHeap::consolidate() {
             prtSubtrees(Min);
         }*/
     } while(i != Min);
-    /*
-    if(Min==NULL) {
-        cout << "after:" << endl;
-        prtSubtrees(Min);
+    
+    cout << "after:" << endl;
+    prtSubtrees(Min);
      
-    }*/
+    
     
 }
 
@@ -322,6 +318,6 @@ void prtSubtrees(Vertex* mini) {
         prtSubtree(i, 0);
         i = i->right;
     } while(i!=mini);
-    //char buffer;
-    //cin >> buffer;
+    char buffer;
+    cin >> buffer;
 }
