@@ -199,8 +199,8 @@ long long int cycleBreaking_d(Graph& G) {
         G.V[i].key = 0;
         while(e != NULL) {
             if(!e->select) { // only the remaining edges counts
-                cout << e->from << ' ' << e->to << ' ' << e->prt << ' ' << e->select << endl;
                 ref[e->to] += 1;
+            } else {
                 G.V[e->from].key -= e->w;
             }
             e = e->next;
@@ -213,11 +213,11 @@ long long int cycleBreaking_d(Graph& G) {
     // find a vertex with no incoming edges and do topological sort
     //cout << "topo order" << endl;
     FibHeap Q;
-    cout << "init" << endl;
+    cout << "init the heap" << endl;
     for(int i=0; i<G.nV; i++) {
         if(ref[i]==0) {
             Q.insert(&G.V[i]);
-            cout << "insert " << i << endl;
+            //cout << "insert " << i << endl;
         }
     }
     cout << "for" << endl;
@@ -249,6 +249,6 @@ long long int cycleBreaking_d(Graph& G) {
         cout << G.V[i].topo_order << endl;
     }
     // if the rest of the edges didn't break the sort then add it back
-     
+    
     return T;
 }
