@@ -290,10 +290,10 @@ void FibHeap::consolidate(bool dbg) {
             prtSubtrees(Min);
         }
     } while(i != Min);
-    
-    cout << "after:" << endl;
-    prtSubtrees(Min);
-     
+    if(dbg) {
+        cout << "after:" << endl;
+        prtSubtrees(Min);
+    }
     
     
 }
@@ -324,6 +324,6 @@ void prtSubtrees(Vertex* mini) {
         prtSubtree(i, 0);
         i = i->right;
     } while(i!=mini);
-    char buffer;
-    cin >> buffer;
+    //char buffer;
+    //cin >> buffer;
 }
