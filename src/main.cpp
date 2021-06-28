@@ -199,6 +199,7 @@ long long int cycleBreaking_d(Graph& G) {
         Edge* e = G.adj[i];
         G.V[i].key = 0;
         while(e != NULL) {
+            cout << e->from << ' ' << e->to << endl;
             if(!e->select) { // only the remaining edges counts
                 ref[e->to] += 1;
                 G.V[e->from].key -= e->w;
