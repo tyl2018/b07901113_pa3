@@ -175,14 +175,12 @@ long long int cycleBreaking_d(Graph& G) {
     G_r.type = 'd'; // change G_r into the reduced directed graph
     for(int i=0; i<G_r.nV; i++) {
         Edge* e = G_r.adj[i];
-        if(e==NULL) {continue;}
-        if(!e->prt) { // delete e
+        while(e==NULL || !e->prt) { // delete e
             cout << "Deleting " << e->from << ' ' << e->to << endl;
             G_r.adj[i] = e->next;
             e = e->next;
-            if(e==NULL) {continue;}
-            cout << "G_r.adj[i] " << e->from << ' ' << e->to << endl;
         }
+        if(e==NULL) {continue;}
         while(e->next != NULL) {
             Edge* f = e->next;
             if(!f->prt) { // delete f
