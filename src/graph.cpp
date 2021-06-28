@@ -110,8 +110,8 @@ Vertex* FibHeap::extractMin() {
     size--;
     // Set new Min
     updateMin(NULL);
-    //consolidate(x->name==71);
-    consolidate(false);
+    consolidate(x->name==86);
+    //consolidate(false);
     // Delete the min node
     x->left = x;
     x->right = x;
