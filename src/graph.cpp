@@ -189,7 +189,7 @@ bool FibHeap::ni(Vertex* v, Vertex* list) {
     return false;
 }
 
-void FibHeap::updateMin(Vertex* v, bool dbg = false) {
+void FibHeap::updateMin(Vertex* v, bool dbg) {
     //cout << "update Min: ";
     if(size==0) {
         Min = NULL;
