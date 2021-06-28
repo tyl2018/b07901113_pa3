@@ -111,7 +111,7 @@ long long int cycleBreaking_u(Graph& G) {
         Q.insert(&G.V[i]);
     }
     cout << "-mps" << endl;
-    while(Q.Min! = NULL) {
+    while(Q.Min != NULL) {
         cout << "loop" << endl;
         Vertex* u = Q.extractMin();
         cout << u->name << endl;
