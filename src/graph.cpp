@@ -91,6 +91,7 @@ Vertex* FibHeap::extractMin(bool dbg) {
         return NULL;
     }
     if(dbg) {
+        prtSubtrees(Min);
         if(Min->left){cout << "Min->left: " << Min->left->name << endl;}
         if(Min->right){cout << "Min->right: " << Min->right->name << endl;}
         if(Min->child){cout << "Min->child: " << Min->child->name << endl;}
