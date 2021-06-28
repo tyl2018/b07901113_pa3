@@ -176,7 +176,6 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G_r.nV; i++) {
         Edge* e = G_r.adj[i];
         if(e==NULL) {continue;}
-        cout << e->from << ' ' << e->to << endl;
         if(!e->prt) { // delete e
             G_r.adj[i] = e->next;
             e = e->next;
@@ -203,8 +202,8 @@ long long int cycleBreaking_d(Graph& G) {
             if(!e->select) { // only the remaining edges counts
                 ref[e->to] += 1;
                 G.V[e->from].key -= e->w;
-                e = e->next;
             }
+            e = e->next;
         }
     }
     for(int i=0; i<G.nV; i++) {
