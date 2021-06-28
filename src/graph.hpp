@@ -15,9 +15,14 @@ using namespace std;
 
 typedef struct Vertex {
     int     name;
-    long long int     key;
+    long long int     key;  // in undigraph means the weight of the edge from pi
+                            // in digraph means the weight of the longest edge going out
     Vertex* pi;
-    //vector<Vertex*> adj;
+    
+    // for directed graphs
+    int     d;
+    int     f;
+    int     color;
     
     // for heap
     Vertex* parent;
@@ -30,12 +35,12 @@ typedef struct Vertex {
 } Vertex;
 
 typedef struct Edge {
-    int from;
-    int to;
+    int     from;
+    int     to;
     int     w;
     Edge*   next;
     Edge*   pair;   // the corresponding edge for undirected edges
-    bool    prt;    // whether it's the representative half of the undirected graph
+    bool    prt;    // whether it's in the directed graph
     bool    select; // be in the output or not
 } Edge;
 
@@ -47,6 +52,7 @@ public:
             Graph(char, int, int);
     void    addVertex(int);
     void    addEdge(int, int, int);
+    void    DtoU(Graph&);
     vector<Vertex> V;
     vector<Edge*> adj;
     char    type;

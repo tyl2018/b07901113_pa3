@@ -14,6 +14,7 @@
 using namespace std;
 
 long long int cycleBreaking_u(Graph&);
+long long int cycleBreaking_d(Graph&);
 void help_message() {
     cout << "usage: ./cb <input_file> <output_file>" << endl;
 }
@@ -44,7 +45,7 @@ int main(int argc, char* argv[]) {
     }
     
     // for testing
-    /*
+    
     cout << "(test: copy)" << endl;
     for(int i=0; i<n; i++) {
         Edge* p = G.adj[i];
@@ -55,7 +56,7 @@ int main(int argc, char* argv[]) {
             p = p->next;
         }
     }
-    */
+    cout << endl;
     
     //////////// cycle breaking //////////////////
     long long int ttl;
@@ -74,6 +75,13 @@ int main(int argc, char* argv[]) {
                 e = e->next;
             }
         }*/
+    } else if(G.type == 'd') {
+        ttl = cycleBreaking_d(G);
+    } else {
+        cout << "檔案格式不正確" << endl;
+        fin.close();
+        fout.close();
+        return 0;
     }
     //////////// write the output file ///////////
     fout << ttl << endl;
@@ -153,4 +161,26 @@ long long int cycleBreaking_u(Graph& G) {
         }
     }
     return T;
+}
+
+long long int cycleBreaking_d(Graph& G) {
+    // transform to undigraph G_u
+    Graph G_u('u', G.nV, G.nE);
+    G.DtoU(G_u);
+    
+    cout << "(test: DtoU)" << endl;
+    for(int i=0; i<G_u.nV; i++) {
+        Edge* p = G_u.adj[i];
+        while(p != NULL) {
+            if(p->prt) { // if(p->prt)
+                cout << p->from << ' ' << p->to << ' ' << p->w << endl;
+            }
+            p = p->next;
+        }
+    }
+    // cycleBreaking_d(G_u) and copy the edges
+    
+    // find a vertex with no incoming edges and do dfs
+    // if the rest of the edges didn't break the dag then add it back
+    return 0;
 }

@@ -48,6 +48,19 @@ void Graph::addEdge(int i, int j, int w) {
     }
 }
 
+void Graph::DtoU(Graph& G_u) {
+    G_u.V = V;
+    for(int i=0; i<nV; i++) {
+        Edge* e = adj[i];
+        while(e!=NULL) {
+            if(e->prt) {
+                G_u.addEdge(e->from, e->to, e->w);
+            }
+            e = e->next;
+        }
+    }
+}
+
 FibHeap::FibHeap() {
     size = 0;
     Min = NULL;
