@@ -221,6 +221,7 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G.nV; i++) {
         if(ref[i]==0) {
             Q.insert(&G.V[i]);
+            cout << "insert " << i << endl;
         }
     }
     cout << "for" << endl;
@@ -237,7 +238,7 @@ long long int cycleBreaking_d(Graph& G) {
         cout << i << ' ' << s->name << endl;
         
         cout << "update" << endl;
-        Edge* e = G.adj[i];
+        Edge* e = G.adj[s->name];
         while(e != NULL) {
             ref[e->to] -= 1;
             if(ref[e->to]==0) {
