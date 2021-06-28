@@ -109,7 +109,7 @@ long long int cycleBreaking_u(Graph& G) {
     cout << "insert" << endl;
     for(int i=0; i<G.nV; i++) {
         Q.insert(&G.V[i]);
-        cout << &G.V[i]->key << endl;
+        cout << (&G.V[i])->key << endl;
     }
     cout << "-mps" << endl;
     while(Q.Min) {
