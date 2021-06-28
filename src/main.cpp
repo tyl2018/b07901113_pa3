@@ -191,7 +191,8 @@ long long int cycleBreaking_d(Graph& G) {
             }
         }
     }
-    G.adj = move(G_r.adj); // no need to use G_r anymore
+    //G.adj = move(G_r.adj); // C++11 only
+    G.adj = G_r.adj;
     
     // prepare for topological sort
     vector<int> ref(G.nV, 0); // The number of incoming edges
