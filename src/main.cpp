@@ -113,6 +113,7 @@ long long int cycleBreaking_u(Graph& G) {
     cout << "-mps" << endl;
     while(Q.Min) {
         Vertex* u = Q.extractMin();
+        cout << u->name << endl;
         Edge* e = G.adj[u->name];
         while(e) {
             cout << e->from << ' ' << e->to << ' ' << e->w << endl;
