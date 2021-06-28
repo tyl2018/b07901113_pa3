@@ -189,7 +189,7 @@ bool FibHeap::ni(Vertex* v, Vertex* list) {
     return false;
 }
 
-void FibHeap::updateMin(Vertex* v) {
+void FibHeap::updateMin(Vertex* v, bool dbg = false) {
     //cout << "update Min: ";
     if(size==0) {
         Min = NULL;
@@ -204,6 +204,7 @@ void FibHeap::updateMin(Vertex* v) {
         Min = start;
         Vertex* i = start->right;
         while(i->name != start->name) {
+            if(dbg){cout << i->name << ' ' << i->key << '\t' << Min->name << ' ' << Min->key << endl;}
             if(i->key < Min->key){
                 Min = i;
             }
