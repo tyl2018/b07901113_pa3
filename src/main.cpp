@@ -223,6 +223,7 @@ long long int cycleBreaking_d(Graph& G) {
     cout << 'b' << endl;
     for(int i=0; i<G.nV; i++) {
         cout << "b1" << endl;
+        cout << Q.Min->name << endl;
         Vertex* s = Q.extractMin();
         cout << "b2" << endl;
         if(s==NULL) {

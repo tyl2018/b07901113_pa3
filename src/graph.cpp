@@ -318,6 +318,6 @@ void prtSubtrees(Vertex* mini) {
         prtSubtree(i, 0);
         i = i->right;
     } while(i!=mini);
-    char buffer;
-    cin >> buffer;
+    //char buffer;
+    //cin >> buffer;
 }
