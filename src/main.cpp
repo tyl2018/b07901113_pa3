@@ -164,32 +164,39 @@ long long int cycleBreaking_u(Graph& G) {
 }
 
 long long int cycleBreaking_d(Graph& G) {
-    // transform to undigraph G_u
-    Graph G_u('u', G.nV, G.nE);
-    G.DtoU(G_u);
+    Graph G_r('u', G.nV, G.nE); // undigraph transformed from G
+    G.DtoU(G_r, E);
     
-    // do cb on G_u and copy the solution
+    // Graph G_r('d', G.nV, G.nE); // reduced digraph by cycleBreaking_u
+    
+    // do cb on G_r
     long long int T=0;
-    T = cycleBreaking_u(G_u);
-    
-    for(int i=0; i<G_u.nV; i++) {
-        Edge* e = G_u.adj[i];
-        while(e != NULL) {
-            if(!e->prt) {
-                e->select = e->pair->select;
-            }
+    T = cycleBreaking_u(G_r);
+    // change G_r into the reduced directed graph
+    G_r.type = 'd';
+    for(int i=0; i<G_r.nV; i++) {
+        Edge* e = G_r.adj[i];
+        if(!e->prt || !e->select) { // delete e
+            G_r.adj[i] = e->next;
             e = e->next;
         }
+        Edge* f = e->next;
+        while(f != NULL) {
+            if(!f->prt) { // delete f
+                e->next = f->next;
+                f = f->next;
+            }
+            e = e->next;
+            f = f->next;
+        }
     }
-    
-    // topo reset
+    /*
+    // reset
     vector<int> ref(G.nV, 0); // The number of incoming edges
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         G.V[i].key = 0;
         while(e != NULL) {
-            e->select = true;
-            //starting[e->to] = false;
             ref[e->to] += 1;
             G.V[e->from].key -= e->w;
             e = e->next;
@@ -253,5 +260,5 @@ long long int cycleBreaking_d(Graph& G) {
         cout << G.V[i].topo_order << endl;
     }
     // if the rest of the edges didn't break the sort then add it back
-    return T;
+    return T;*/
 }
