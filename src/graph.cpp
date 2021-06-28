@@ -91,9 +91,9 @@ Vertex* FibHeap::extractMin(bool dbg) {
         return NULL;
     }
     if(dbg) {
-        cout << "Min->left: " << Min->left->name << endl;
-        cout << "Min->right: " << Min->right->name << endl;
-        cout << "Min->child: " << Min->child->name << endl;
+        if(Min->left){cout << "Min->left: " << Min->left->name << endl;}
+        if(Min->right){cout << "Min->right: " << Min->right->name << endl;}
+        if(Min->child){cout << "Min->child: " << Min->child->name << endl;}
         char buffer;
         cin >> buffer;
     }
@@ -275,7 +275,7 @@ void FibHeap::consolidate(bool dbg) {
         cout << "before:" << endl;
         prtSubtrees(Min);
     }
-     
+    
     if(Min==NULL) {
         return;
     }
