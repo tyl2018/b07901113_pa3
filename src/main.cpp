@@ -240,7 +240,9 @@ long long int cycleBreaking_d(Graph& G) {
         cout << "update" << endl;
         Edge* e = G.adj[s->name];
         while(e != NULL) {
-            ref[e->to] -= 1;
+            if(!e->select) {
+                ref[e->to] -= 1;
+            }
             if(ref[e->to]==0) {
                 Q.insert(&G.V[e->to]);
             }
