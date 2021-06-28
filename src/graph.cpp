@@ -239,9 +239,9 @@ void FibHeap::updateMin(Vertex* v, bool dbg) {
 
 void FibHeap::link(Vertex* y, Vertex* x) {
     // Remove child from root list
-    //cout << y->name << " ==> " << x->name << endl;
-    //cout << "y->left: " << y->left->name << endl;
-    //cout << "y->right: " << y->right->name << endl;
+    cout << y->name << " ==> " << x->name << endl;
+    cout << "y->left: " << y->left->name << endl;
+    cout << "y->right: " << y->right->name << endl;
     y->left->right = y->right;
     y->right->left = y->left;
     
@@ -256,9 +256,9 @@ void FibHeap::link(Vertex* y, Vertex* x) {
         y->left->right = y;
         y->right->left = y;
     }
-    //cout << "after link" << endl;
-    //cout << "y->left: " << y->left->name << endl;
-    //cout << "y->right: " << y->right->name << endl;
+    cout << "after link" << endl;
+    cout << "y->left: " << y->left->name << endl;
+    cout << "y->right: " << y->right->name << endl;
     y->parent = x;
     y->marked = false;
     //cout << y->name << " false d" << endl;
