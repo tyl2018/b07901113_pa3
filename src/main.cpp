@@ -206,9 +206,6 @@ long long int cycleBreaking_d(Graph& G) {
             e = e->next;
         }
     }
-    for(int i=0; i<G.nV; i++) {
-        cout << i << ' ' <<  ref[i] << ' ' << G.V[i].key << endl;
-    }
     
     // find a vertex with no incoming edges and do topological sort
     //cout << "topo order" << endl;
@@ -220,31 +217,20 @@ long long int cycleBreaking_d(Graph& G) {
         }
     }
     for(int i=0; i<G.nV; i++) {
-        cout << "b1" << endl;
-        cout << Q.Min->name << endl;
         Vertex* s = Q.extractMin();
-        cout << "b2" << endl;
         if(s==NULL) {
             cout << "error" << endl;
             return 0;
         }
-        cout << "b3" << endl;
         ref[s->name] = -1; // mark as sorted
         s->topo_order = i;
         
-        Edge* e = G.adj[s->name]; cout << "b4" << endl;
-        for(int i=0; i<G.nV; i++) {
-            cout << ref[i] << ' ';
-        }
-        cout << endl;
+        Edge* e = G.adj[s->name];
         while(e != NULL) {
-            cout << e->from << ' ' << e->to << ' ' << e->prt << ' ' << e->select << endl;
             if(!e->select) {
                 ref[e->to] -= 1;
                 if(ref[e->to]==0) {
                     Q.insert(&G.V[e->to]);
-                    char bugfer;
-                    cin >> bugfer;
                 }
             }
             
@@ -255,7 +241,6 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
-            //cout << e->from << ' ' << e->to << ' ' << (e==e->next);
             if(e->select && G.V[e->from].topo_order < G.V[e->to].topo_order) {
                 e->select = false;
                 T -= e->w;

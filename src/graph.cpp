@@ -31,9 +31,7 @@ void Graph::addEdge(int i, int j, int w) {
     e->w = w;
     e->next = adj[i];
     e->prt = true;
-    //e->del = false;
     adj[i] = e;
-    //cout << adj[i]->del << endl;
     if(type=='u') {
         Edge* er = new Edge();
         er->from = j;
@@ -68,7 +66,6 @@ FibHeap::FibHeap() {
 }
 
 void FibHeap::insert(Vertex* v) {
-    cout << "insert " << v->name << endl;
     v->parent = NULL;
     v->child = NULL;
     v->left = v;
@@ -92,9 +89,6 @@ Vertex* FibHeap::extractMin(bool dbg) {
     }
     if(dbg) {
         prtSubtrees(Min);
-        if(Min->left){cout << "Min->left: " << Min->left->name << endl;}
-        if(Min->right){cout << "Min->right: " << Min->right->name << endl;}
-        if(Min->child){cout << "Min->child: " << Min->child->name << endl;}
         char buffer;
         cin >> buffer;
     }
@@ -102,29 +96,12 @@ Vertex* FibHeap::extractMin(bool dbg) {
     if(i != NULL) { // has some children to move
         // cut down all the children
         while(i->parent != NULL) {
-            if(dbg) {
-                cout << "cutting " << i->name << endl;
-                char buffer;
-                cin >> buffer;
-            }
             i->parent = NULL;
             i->marked = false;
-            //cout << i->name << " false a" << endl;
             i = i->right;
         }
         // Add subtrees in the root list
-        if(dbg) {
-            cout << "Min->left: " << Min->left->name << endl;
-            cout << "Min->child: " << Min->left->name << endl;
-            cout << "uni()" << endl;
-            char buffer;
-            cin >> buffer;
-        }
         uni(Min->left,Min->child);
-        if(dbg){
-            cout << "Min: " << Min->name << endl;
-            prtSubtrees(Min);
-        }
     }
     // delete Min from the root list
     
@@ -147,7 +124,6 @@ void FibHeap::decreaseKey(Vertex* v, int newkey) {
     //cout << "decreaseKey" << endl;
     v->key = newkey;
     if(v->parent == NULL) { // v in the root list. Just update Min
-        //cout << "in root list" << endl;
         updateMin(v);
     } else if(v->key < v->parent->key) { // v is not in the root list min tree not violated
         while(true) {
@@ -162,7 +138,6 @@ void FibHeap::decreaseKey(Vertex* v, int newkey) {
             p->degree -= 1;
             v->parent = NULL;
             v->marked = false;
-            //cout << v->name << " false b" << endl;
             v->left->right = v->right;
             v->right->left = v->left;
             v->left = v;
@@ -172,7 +147,6 @@ void FibHeap::decreaseKey(Vertex* v, int newkey) {
             updateMin(v); // update Min
             if(!(p->marked)) {
                 p->marked = true;
-                //cout << p->name << " true c" << endl;
                 break;
             } else {
                 v = p;
@@ -228,7 +202,6 @@ void FibHeap::updateMin(Vertex* v, bool dbg) {
         Min = start;
         Vertex* i = start->right;
         while(i->name != start->name) {
-            if(dbg){cout << i->name << ' ' << i->key << '\t' << Min->name << ' ' << Min->key << endl;}
             if(i->key < Min->key){
                 Min = i;
             }
@@ -239,9 +212,6 @@ void FibHeap::updateMin(Vertex* v, bool dbg) {
 
 void FibHeap::link(Vertex* y, Vertex* x) {
     // Remove child from root list
-    cout << y->name << " ==> " << x->name << endl;
-    cout << "y->left: " << y->left->name << endl;
-    cout << "y->right: " << y->right->name << endl;
     y->left->right = y->right;
     y->right->left = y->left;
     
@@ -256,12 +226,8 @@ void FibHeap::link(Vertex* y, Vertex* x) {
         y->left->right = y;
         y->right->left = y;
     }
-    cout << "after link" << endl;
-    cout << "y->left: " << y->left->name << endl;
-    cout << "y->right: " << y->right->name << endl;
     y->parent = x;
     y->marked = false;
-    //cout << y->name << " false d" << endl;
     // increase degree
     x->degree += 1;
     if(x->degree > maxDegree) {
@@ -270,13 +236,6 @@ void FibHeap::link(Vertex* y, Vertex* x) {
 }
 
 void FibHeap::consolidate(bool dbg) {
-    
-    if(dbg) {
-        cout << "consolidate" << endl;
-        cout << "before:" << endl;
-        prtSubtrees(Min);
-    }
-    
     if(Min==NULL) {
         return;
     }
@@ -290,10 +249,6 @@ void FibHeap::consolidate(bool dbg) {
             Vertex* x = D[r->degree];
             D[r->degree] = NULL;
             // link
-            if(dbg) {
-                cout << r->name << ' ' << x->name << ' ' << Min->name << endl;
-                cout << r->key << ' ' << x->key << endl;
-            }
             if(r->key < x->key || Min==r) {
                 link(x, r);
             } else {
@@ -308,24 +263,7 @@ void FibHeap::consolidate(bool dbg) {
         
         i = i_next;
         
-        if(dbg) {
-            cout << "step" << endl;
-            cout << "Min->left: " << Min->left->name << endl;
-            cout << "Min->right: " << Min->right->name << endl;
-            for(int it=0; it<D.size(); it++) {
-                if(D.at(it) != NULL)    cout << D.at(it)->name << ' ';
-                else    cout << '\\' << ' ';
-            }
-            cout << endl;
-            prtSubtrees(Min);
-        }
     } while(i != Min);
-    if(dbg) {
-        cout << "after:" << endl;
-        prtSubtrees(Min);
-    }
-    
-    
 }
 
 void prtSubtree(Vertex* v, int depth) {
