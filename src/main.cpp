@@ -232,6 +232,7 @@ long long int cycleBreaking_d(Graph& G) {
         
         Edge* e = G.adj[s->name];
         while(e != NULL) {
+            cout << e->from << ' ' << e->to << ' ' << e->select << ' ' << (e==e->next);
             if(!e->select) {
                 ref[e->to] -= 1;
             }
@@ -246,7 +247,7 @@ long long int cycleBreaking_d(Graph& G) {
     for(int i=0; i<G.nV; i++) {
         Edge* e = G.adj[i];
         while(e != NULL) {
-            cout << e->from << ' ' << e->to << ' ' << (e==e->next);
+            //cout << e->from << ' ' << e->to << ' ' << (e==e->next);
             if(e->select && G.V[e->from].topo_order < G.V[e->to].topo_order) {
                 e->select = false;
                 T -= e->w;
