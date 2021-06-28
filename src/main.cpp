@@ -227,7 +227,7 @@ long long int cycleBreaking_d(Graph& G) {
             return 0;
         }
         ref[s->name] = -1; // mark as sorted
-        s.topo_order = i;
+        s->topo_order = i;
         cout << i << G.V[i].name << ' ' << endl;
         
         Edge* e = G.adj[i];
